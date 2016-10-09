@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 /**
- * Created by dmitry on 02.10.16.
+ * Created by daniil on 07.10.16.
  */
 public class GuestBookRender {
 
@@ -22,16 +22,19 @@ public class GuestBookRender {
         StringBuilder sb = new StringBuilder();
 
         sb.append("<!doctype html>");
-        sb.append("<html>");
+        sb.append("<html");
         sb.append("<head>");
         sb.append("<meta charset='UTF-8'>");
-        sb.append("<title> Guest Book </title> </head>");
-        sb.append("<body>");
+        sb.append("<title> Guest Book </title>");
+
+
         sb.append("<form method='POST'>");
+        sb.append("<fieldset>");
         sb.append("User: <input type='text' name='user'/><br/>");
         sb.append("Message:<br>");
         sb.append("<textarea name='body'></textarea><br>");
-        sb.append("<input type='submit' value='Отправить'/> ");
+        sb.append("<input type='submit' value='Send a message'/> ");
+        sb.append("</fieldset>");
         sb.append("</form>");
         sb.append("<hr>");
         renderMessages(sb, message);
@@ -43,7 +46,7 @@ public class GuestBookRender {
 
     private static void renderMessages(StringBuilder sb, List<Message> message) {
         if(message.isEmpty()) {
-            sb.append("<h2>Сообщений нет</h2>");
+            sb.append("<h2>Still empty!</h2>");
         } else {
             sb.append("<ul>");
             for (Message m : message) {
@@ -54,10 +57,11 @@ public class GuestBookRender {
     }
 
     private static void renderMessage(StringBuilder sb, Message message) {
-        sb.append("<li>");
+        sb.append("<fieldset>");
         sb.append("<div class='user'>").append(message.getUser()).append("</div>");
-        sb.append("<div class='body'>").append(message.getBody()).append("</body>");
-        sb.append("</li>");
+        sb.append("<div class='time'>").append(message.getTime()).append("</div>");
+        sb.append("<div class='body'>").append(message.getBody()).append("</div>");
+        sb.append("</fieldset>");
     }
 
 }
