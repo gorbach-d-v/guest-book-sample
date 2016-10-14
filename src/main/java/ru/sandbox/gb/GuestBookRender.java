@@ -22,22 +22,27 @@ public class GuestBookRender {
         StringBuilder sb = new StringBuilder();
 
         sb.append("<!doctype html>");
-        sb.append("<html");
+        sb.append("<html>");
         sb.append("<head>");
         sb.append("<meta charset='UTF-8'>");
         sb.append("<title> Guest Book </title>");
+        sb.append("<link href='http://localhost:8080/assets/Style.css' rel='stylesheet' type='text/css' /><head>");
 
+        sb.append("<body style='background-color: #cccccc'>");
+        sb.append("<div class='header'>");
+        sb.append("<div class='img'><img src='http://localhost:8080/assets/kittySmall.png'/></div>");
+        sb.append("<div class='title'>Guest Book</div>");
+        sb.append("<div class='headerend'></div></div>");
 
         sb.append("<form method='POST'>");
-        sb.append("<fieldset>");
-        sb.append("User: <input type='text' name='user'/><br/>");
-        sb.append("Message:<br>");
-        sb.append("<textarea name='body'></textarea><br>");
-        sb.append("<input type='submit' value='Send a message'/> ");
-        sb.append("</fieldset>");
+        sb.append("<div class='menu'>");
+        sb.append("<div><input type='text' name='user' id='user' placeholder='Пользователь'></div>");
+        sb.append("<div><textarea name='body' id='body' placeholder='Ваше сообщение'></textarea></div>");
+        sb.append("<div><input type='submit' value='Отправить' id='button'/></div></div>");
         sb.append("</form>");
-        sb.append("<hr>");
+
         renderMessages(sb, message);
+
         sb.append("</body>");
 
         os.write(sb.toString().getBytes(Charset.forName("UTF-8")));
@@ -46,22 +51,24 @@ public class GuestBookRender {
 
     private static void renderMessages(StringBuilder sb, List<Message> message) {
         if(message.isEmpty()) {
-            sb.append("<h2>Still empty!</h2>");
+            sb.append("<div class='empty'><p>Пока пусто!</p><div>");
         } else {
-            sb.append("<ul>");
             for (Message m : message) {
-               renderMessage(sb, m);
+                renderMessage(sb, m);
             }
-            sb.append("</ul>");
         }
     }
 
     private static void renderMessage(StringBuilder sb, Message message) {
-        sb.append("<fieldset>");
-        sb.append("<div class='user'>").append(message.getUser()).append("</div>");
-        sb.append("<div class='time'>").append(message.getTime()).append("</div>");
-        sb.append("<div class='body'>").append(message.getBody()).append("</div>");
-        sb.append("</fieldset>");
+        sb.append("<div class='pages'>");
+        sb.append("<div class='top'>");
+        sb.append("<div class='name'>");
+        sb.append(message.getUser()).append("</div>");
+        sb.append("<div class='time'>");
+        sb.append(message.getTime()).append("</div>");
+        sb.append("<div class='endfloat'></div></div>");
+        sb.append("<div class='text'>");
+        sb.append(message.getBody()).append("</div></div>");
     }
 
 }

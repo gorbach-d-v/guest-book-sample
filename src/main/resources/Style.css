@@ -1,0 +1,94 @@
+.header {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width:800px;
+}
+.img {
+    width: 120px;
+    height: 120px;
+    float:left;
+}
+.title {
+    margin-left: 60px;
+    margin-top: 20px;
+    font-family: Comic Sans MS;
+    font-size: 50pt;
+    float:left;
+}
+.headerend {
+    clear:both}
+.menu {
+    margin-left:auto;
+    margin-right:auto;
+    width:800px;
+    margin-bottom:30px;
+    border:1px solid #000000;
+    background:#ffffff;
+}
+#user{
+    width:776px;
+    height: 20px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border:1px solid #000000;
+}
+
+#body{
+    width: 776px;;
+    height: 80px;;
+    margin-left: 10px;;
+    margin-bottom: 20px;;
+    padding: 0;
+    border:1px solid #000000;
+}
+#button{
+    margin-left: 588px;
+    margin-bottom: 20px;
+    width: 200px;
+    text-align: center;
+    border:1px solid #000000;
+}
+.empty{
+    font-family: Comic Sans MS;
+    text-align: center;
+    font-size: 20pt;
+}
+.pages{
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:10px;
+    width:798px;
+    border:1px solid #000000;
+    background:#ffffff;
+    font-family: Comic Sans MS;
+}
+.top{
+    height: 45px;
+}
+.name {
+    font-size: 22pt;
+    text-align:center;
+    width:499px;
+    line-height: 45px;
+    float:left;
+}
+.time {
+    font-size: 15pt;
+    text-align:center;
+    width:299px;
+    line-height: 45px;
+    float:left;
+}
+.endfloat{
+    clear:both;
+}
+.text {
+    font-size: 13pt;
+    text-indent: 30px;
+    padding: 15px;
+    text-align:justify;
+    margin: 0px -1px -1px -1px;
+    border:1px solid #000000;
+}

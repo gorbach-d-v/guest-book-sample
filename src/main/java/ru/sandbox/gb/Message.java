@@ -28,10 +28,22 @@ public class Message {
         LocalDateTime TimeNow = LocalDateTime.now();
         LocalDateTime TimeThen =LocalDateTime.parse(time, formatter);
 
-        if ((ChronoUnit.HOURS.between(TimeThen, TimeNow)<1)) {
-            return (ChronoUnit.MINUTES.between(TimeThen, TimeNow) + " minutes ago");
-        }else if (ChronoUnit.DAYS.between(TimeThen, TimeNow)<1){
-            return (ChronoUnit.HOURS.between(TimeThen, TimeNow)+" hours ago");
+        if ((ChronoUnit.HOURS.between(TimeThen, TimeNow)<1)){
+            if (((ChronoUnit.MINUTES.between(TimeThen, TimeNow)/10)!=1)&&((ChronoUnit.MINUTES.between(TimeThen, TimeNow)%10)==1)){
+                return (ChronoUnit.MINUTES.between(TimeThen, TimeNow) + " минуту назад");
+            }else if (((ChronoUnit.MINUTES.between(TimeThen, TimeNow)/10)!=1)&&(((ChronoUnit.MINUTES.between(TimeThen, TimeNow)%10)==2)|((ChronoUnit.MINUTES.between(TimeThen, TimeNow)%10)==3)|((ChronoUnit.MINUTES.between(TimeThen, TimeNow)%10)==4))){
+                return (ChronoUnit.MINUTES.between(TimeThen, TimeNow) + " минуты назад");
+            }else {
+                return (ChronoUnit.MINUTES.between(TimeThen, TimeNow) + " минут назад");
+            }
+        } else if ((ChronoUnit.DAYS.between(TimeThen, TimeNow)<1)){
+            if (((ChronoUnit.HOURS.between(TimeThen, TimeNow)/10)!=1)&&((ChronoUnit.HOURS.between(TimeThen, TimeNow)%10)==1)){
+                return (ChronoUnit.HOURS.between(TimeThen, TimeNow) + " час назад");
+            }else if (((ChronoUnit.HOURS.between(TimeThen, TimeNow)/10)!=1)&&(((ChronoUnit.HOURS.between(TimeThen, TimeNow)%10)==2)|((ChronoUnit.HOURS.between(TimeThen, TimeNow)%10)==3)|((ChronoUnit.HOURS.between(TimeThen, TimeNow)%10)==4))){
+                return (ChronoUnit.HOURS.between(TimeThen, TimeNow) + " часа назад");
+            }else {
+                return (ChronoUnit.HOURS.between(TimeThen, TimeNow) + " часов назад");
+            }
         }else {
             return TimeThen.format(DateTimeFormatter.ofPattern("d::MMM::uuuu HH::mm::ss"));
         }

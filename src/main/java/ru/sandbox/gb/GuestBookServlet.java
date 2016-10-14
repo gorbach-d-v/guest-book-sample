@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
+//import java.io.OutputStream;
+//import java.nio.charset.Charset;
 
 /**
  * Created by dmitry on 02.10.16.
@@ -20,9 +23,18 @@ public class GuestBookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String uri = req.getRequestURI();
+        if (uri.contains("/assets")){
+            String filename = uri.substring("/assets".length());
+            InputStream stream = GuestBookServlet.class.getResourceAsStream(filename);
+            int b;
+            while ((b=stream.read())!=-1){
+                resp.getOutputStream().write(b);
+            }
+        } else {
+            GuestBookRender.renderPage(storage.getMessages(), resp);
+        }
         req.setCharacterEncoding("UTF-8");
-
-        GuestBookRender.renderPage(storage.getMessages(), resp);
     }
 
     @Override
@@ -34,6 +46,7 @@ public class GuestBookServlet extends HttpServlet {
         if (newMessage != null) {
             storage.store(newMessage);
         }
+
 
         GuestBookRender.renderPage(storage.getMessages(), resp);
 
